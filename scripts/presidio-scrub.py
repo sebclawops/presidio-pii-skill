@@ -67,6 +67,12 @@ def main():
             filtered.append(ent)
     entities = filtered
 
+    # Whitelist: exclude WhatsApp JIDs from PII detection
+    WHATSAPP_SUFFIXES = ("@g.us", "@s.whatsapp.net", "@lid", "@broadcast")
+    entities = [e for e in entities if not any(text[e["start"]:e["end"]].endswith(suffix) for suffix in WHATSAPP_SUFFIXES)]
+    if len(entities) == 0:
+        print(json.dumps({"text": text, "pii_found": 0, "mapping_file": None, "session_id": session_id}, indent=2)); return
+
     # Build tokens
     entities_fwd = sorted(entities, key=lambda x: x["start"])
     type_counters, token_map, reverse_map = {}, {}, {}
