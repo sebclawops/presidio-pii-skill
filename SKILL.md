@@ -1,6 +1,6 @@
 ---
 name: presidio-pii
-version: 1.0.0
+version: 1.0.1
 description: Local PII protection for OpenClaw agents. Scrubs customer data (names, phones, emails, addresses, credit cards, vessel names) before it reaches any AI model. Uses Microsoft Presidio running as local Docker containers. Supports reversible pseudonymization and fail-closed policy. Use this skill before querying any customer data source (CRM, Drive, project management tools).
 homepage: https://github.com/sebclawops/presidio-pii
 metadata:
